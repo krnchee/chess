@@ -3,12 +3,15 @@ require_relative "display"
 
 class Game
 
+  attr_reader :display
+
   def initialize
     @board = Board.new
     @display = Display.new(@board)
-    puts @display.render
+    @board.register_cursor(@display.cursor)
   end
 
 end
 
-Game.new
+g=Game.new
+g.display.render_and_cursor_test
