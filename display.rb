@@ -11,7 +11,7 @@ class Display
 
   def render_and_cursor_test
 
-    while true
+    loop do
       render
       @cursor.get_input
     end
