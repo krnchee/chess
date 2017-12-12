@@ -13,24 +13,44 @@ class Board
   def initialize
     @grid = Array.new(8){Array.new(8)}
     @grid[0].each_with_index do |spot, idx|
-      @grid[0][idx] = Piece.new
+      if idx == 3
+        @grid[0][idx] = King.new(:b, [0, idx], self)
+      elsif idx == 4
+        @grid[0][idx] = Queen.new(:b, [0, idx], self)
+      elsif idx == 0 || idx == 7
+        @grid[0][idx] = Rook.new(:b, [0, idx], self)
+      elsif idx == 1 || idx == 6
+        @grid[0][idx] = Knight.new(:b, [0, idx], self)
+      elsif idx == 2 || idx == 5
+        @grid[0][idx] = Bishop.new(:b, [0, idx], self)
+      end
     end
 
     @grid[1].each_with_index do |spot, idx|
-      @grid[1][idx] = Piece.new
+      @grid[1][idx] = Pawn.new(:b, [1, idx], self)
     end
 
     @grid[6].each_with_index do |spot, idx|
-      @grid[6][idx] = Piece.new
+      @grid[6][idx] = Pawn.new(:w, [6, idx], self)
     end
 
     @grid[7].each_with_index do |spot, idx|
-      @grid[7][idx] = Piece.new
+      if idx == 3
+        @grid[7][idx] = King.new(:w, [7, idx], self)
+      elsif idx == 4
+        @grid[7][idx] = Queen.new(:w, [7, idx], self)
+      elsif idx == 0 || idx == 7
+        @grid[7][idx] = Rook.new(:w, [7, idx], self)
+      elsif idx == 1 || idx == 6
+        @grid[7][idx] = Knight.new(:w, [7, idx], self)
+      elsif idx == 2 || idx == 5
+        @grid[7][idx] = Bishop.new(:w, [7, idx], self)
+      end
     end
 
     [2,3,4,5].each do |row_idx|
       @grid[row_idx].each_with_index do |sq, col_idx|
-        @grid[row_idx][col_idx] = NullPiece.new
+        @grid[row_idx][col_idx] = NullPiece.new(self)
       end
     end
   end
