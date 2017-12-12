@@ -58,6 +58,7 @@ class Board
     unless in_bounds(pos)
       raise ArgumentError  # Perhaps InvalidPositionError ? FixMe
     end
+    x, y = pos
     @grid[x][y]
   end
 
