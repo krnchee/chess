@@ -9,7 +9,7 @@ class Display
 
   def render
     lines = []
-    @board.
+    @board.to_s
   end
 
   def move(new_pos)

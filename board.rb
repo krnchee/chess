@@ -1,6 +1,6 @@
 require_relative "piece"
 
-require colorize
+require "colorize"
 
 class Board
   attr_accessor :grid
@@ -64,8 +64,12 @@ class Board
       row.each do |piece|
         line.push(piece.to_s)
       end
-      lines.push(line.join(' | '))
+      line = line.join(' | ')
+      line = '| ' + line + ' |'
+      lines.push(line)
     end
-    lines.join("\n------------------------------------------------\n")
+
+    lines = lines.join("\n#{'-'*33}\n")
+    lines = ('-' * 31) + "\n" + lines + "\n"  + ('-' * 31)
   end
 end
