@@ -52,7 +52,19 @@ class King < Piece
     end
   end
 
-
+  def moves
+    x, y = @pos
+    possible_moves =  []
+    [-1 , 0, 1].each do |x_diff|
+      [-1, 0, 1].each do |y_diff|
+        possible_moves << [(x + x_diff), (y + y_diff)]
+      end
+    end
+    possible_moves.select! { |pm| @board.in_bounds(pm) }
+    possible_moves.reject! do |pm|
+      @board[pm].color == @color
+    end
+  end
 
 end
 
