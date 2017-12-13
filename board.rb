@@ -50,7 +50,7 @@ class Board
 
     [2,3,4,5].each do |row_idx|
       @grid[row_idx].each_with_index do |sq, col_idx|
-        @grid[row_idx][col_idx] = NullPiece.new(self)
+        @grid[row_idx][col_idx] = NullPiece.instance
       end
     end
   end

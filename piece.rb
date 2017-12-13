@@ -1,5 +1,7 @@
 
 require_relative 'slideable'
+require 'singleton'
+
 
 class Piece
   attr_reader :color
@@ -19,9 +21,10 @@ end
 
 
 class NullPiece < Piece
+  include Singleton
 
-  def initialize(board)
-    @board = board
+  def initialize
+#    @board = board
     @color = :null
   end
 
