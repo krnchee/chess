@@ -107,4 +107,21 @@ class Board
     lines = lines.join("\n#{'-'*33}\n")
     lines = ('-' * 33) + "\n" + lines + "\n"  + ('-' * 33)
   end
+
+  def in_check?(color)
+    opponent_color = :w
+    opponent_color = :b if color == :w
+    king_pos = find_king(color)
+
+    @grid.flatten.any? { |piece| piece.can_attack_pos)pos) }
+  end
+
+  def find_king(color)
+    @grid.flatten.each do |piece|
+      if piece.is_a?(King) && piece.color == color
+        return piece.pos
+      end
+    king_pos
+  end
+
 end
