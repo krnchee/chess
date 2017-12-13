@@ -78,6 +78,21 @@ class Knight < Piece
       '♘'
     end
   end
+
+  def moves
+    x, y = @pos
+    possible_moves = []
+    [-1,-2,1,2].each do |x_diff|
+      [-1,-2,1,2].each do |y_diff|
+        next if x_diff.abs == y_diff.abs
+        possible_moves << [(x + x_diff), (y + y_diff)]
+      end
+    end
+    possible_moves.select! { |pm| @board.in_bounds(pm) }
+    possible_moves.reject! do |pm|
+      @board[pm].color == @color
+    end
+  end
 end
 
 
