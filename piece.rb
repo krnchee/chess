@@ -1,4 +1,6 @@
 
+require_relative 'slideable'
+
 class Piece
   attr_reader :color
 
@@ -31,6 +33,14 @@ end
 
 
 class Bishop < Piece
+  include Slideable
+
+  def initialize(color, pos, board)
+    @move_dirs = [:diag]
+    super
+  end
+
+
 
   def to_s
     if @color == :b
@@ -128,6 +138,12 @@ end
 
 
 class Queen < Piece
+  include Slideable
+
+  def initialize(color, pos, board)
+    @move_dirs = [:diag, :ortho]
+    super
+  end
 
   def to_s
     if @color == :b
@@ -140,6 +156,14 @@ end
 
 
 class Rook < Piece
+  include Slideable
+
+  def initialize(color, pos, board)
+    @move_dirs = [:ortho]
+    super
+  end
+
+
 
   def to_s
     if @color == :b
