@@ -105,7 +105,25 @@ class Pawn < Piece
       '♙'
     end
   end
-  # white pawn♙
+
+  def moves
+    x, y = @pos
+    possible_moves = []
+    direction = @color == :w ? -1 : 1
+
+    if x == 1 || x == 6
+      possible_moves << [x + 2* direction, y]
+    end
+    possible_moves << [x + direction, y]
+
+    [1, -1].each do |y_diff|
+      candidate = @board[x + direction, y + y_diff]
+      unless candidate.is_a?(NullPiece) || candidate.color == @color
+       possible_moves << [x + direction, y + y_diff]
+      end
+    end
+    possible_moves.select! { |pm| @board.in_bounds(pm) }
+  end
 end
 
 
