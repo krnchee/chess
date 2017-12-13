@@ -5,6 +5,7 @@ require 'singleton'
 
 class Piece
   attr_reader :color
+  attr_reader :pos
 
   def initialize(color, pos, board)
     @color = color
@@ -14,9 +15,11 @@ class Piece
 
   def to_s
     'P'
-
   end
 
+  def can_attack_pos?(pos)
+    moves.include?(pos)
+  end
 end
 
 
@@ -30,6 +33,10 @@ class NullPiece < Piece
 
   def to_s
     ' '
+  end
+
+  def can_attack_pos(pos)
+    false
   end
 
 end
